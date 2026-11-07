@@ -1,0 +1,64 @@
+<app-mapa-patio [vagas]="vagas()"
+                (vagaLivre)="novaEntrada($event)"
+                (vagaOcupada)="fecharPorVaga($event)">
+</app-mapa-patio>
+
+<nb-card>
+  <nb-card-header>
+    <div class="header">
+      <span>Pátio — contas abertas ({{ servicos().length }})</span>
+      <div class="acoes">
+        <button nbButton status="basic" size="small" (click)="carregar()">
+          <nb-icon icon="refresh-outline"></nb-icon> Atualizar
+        </button>
+        <button nbButton status="primary" (click)="novaEntrada()">
+          <nb-icon icon="plus-outline"></nb-icon> Nova entrada
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    @if (carregando()) {
+      <div class="loading"><nb-spinner status="primary"></nb-spinner></div>
+    } @else if (servicos().length === 0) {
+      <p class="vazio">Nenhum veículo no pátio.</p>
+    } @else {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nº</th><th>Vaga</th><th>Placa</th><th>Veículo</th><th>Tipo</th><th>Cobrança</th>
+            <th>Entrada</th><th>Vencimento</th><th>Lavação</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (s of servicos(); track s.id) {
+            <tr>
+              <td>{{ s.entradaN }}</td>
+              <td>{{ s.vaga ?? '—' }}</td>
+              <td class="placa">{{ s.placa }}</td>
+              <td>{{ s.veiculo }}</td>
+              <td><nb-tag [text]="tipoLabel(s)" [status]="tipoStatus(s)" size="tiny"></nb-tag></td>
+              <td>{{ s.especie === 'HORA' ? 'Hora' : 'Diária' }}</td>
+              <td>{{ s.dataHoraEntrada | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>
+                @if (s.vencimentoPrePago) {
+                  {{ s.vencimentoPrePago | date: 'dd/MM/yy HH:mm' }}
+                } @else { — }
+              </td>
+              <td>{{ s.itens ?? '—' }}</td>
+              <td class="acoes-linha">
+                <button nbButton status="success" size="tiny" (click)="fechar(s)">
+                  Fechar
+                </button>
+                <button nbButton status="danger" size="tiny" appearance="outline"
+                        (click)="excluir(s)">
+                  <nb-icon icon="trash-2-outline"></nb-icon>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </nb-card-body>
+</nb-card>

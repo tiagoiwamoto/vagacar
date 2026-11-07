@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.vazio {
+  text-align: center;
+  padding: 2rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--divider-color, #edf1f7);
+}
+
+.placa {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.acoes-linha {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}

@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+  <nb-card class="login-card">
+    <nb-card-body>
+      <div class="login-header">
+        <nb-icon icon="car-outline" class="login-icon"></nb-icon>
+        <h4>Estacionamento</h4>
+        <p class="login-subtitle">Acesse sua conta para continuar</p>
+      </div>
+
+      <button
+        nbButton
+        status="primary"
+        size="large"
+        fullWidth
+        (click)="loginWithAuthentik()"
+        [disabled]="loading">
+        @if (loading) {
+          <nb-icon icon="loader-outline" class="spin"></nb-icon>
+        }
+        Entrar com Authentik
+      </button>
+
+      <div class="login-footer">
+        <small>Você será redirecionado para o Authentik para autenticação</small>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

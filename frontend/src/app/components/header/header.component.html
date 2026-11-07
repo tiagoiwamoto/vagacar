@@ -1,0 +1,23 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a class="sidebar-toggle" (click)="toggleSidebar()">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" routerLink="/">
+      <nb-icon icon="car-outline"></nb-icon>
+      Estacionamento
+    </a>
+  </div>
+</div>
+<div class="header-container">
+  <nb-actions size="small" class="right-actions">
+    <nb-action class="user-action">
+      <nb-user
+        [name]="userName"
+        [nbContextMenu]="userMenu"
+        nbContextMenuTag="user-context-menu"
+        size="medium">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>
